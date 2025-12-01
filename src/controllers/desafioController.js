@@ -22,3 +22,15 @@ exports.criarDesafios = async(req,res) => {
     }
 }
 
+exports.deletarDesafios = async(req,res) => {
+    try {
+        const {id} = req.params
+        const [result] = await pool.query("delete from desafios where id_desafio=?",[id])
+        if (result.affectedRows===0) {
+            return res.status(404).json({message:"Desafio não encontrado"})
+        }
+        res.json({message:"Desafio deletado com sucesso"})
+    } catch (error) {
+        res.status(500).json({message:"Erro ao deletar desafios", error})
+    }
+}

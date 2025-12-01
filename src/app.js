@@ -5,6 +5,9 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+//inicio desafio
 const desafiosRoutes = require("./routes/desafios")
 app.use("/desafios",desafiosRoutes)
+//final desafio
+
 app.listen(3000, () => console.log("Servidor rodando na porta 3000"))
