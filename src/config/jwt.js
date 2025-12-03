@@ -1,6 +1,6 @@
-// src/config/jwt.js
+require("dotenv").config()
 module.exports = {
     // IMPORTANTE: Use uma chave complexa e armazene isso em process.env.JWT_SECRET no futuro.
-    secret: "sua_chave_super_secreta_aqui_para_assinatura", 
+    secret: process.env.JWT_SECRET, 
     expiresIn: '8h' 
 };

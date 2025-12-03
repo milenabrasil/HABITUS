@@ -1,7 +1,6 @@
-const pool = require("../config/db"); // Certifique-se de que este caminho está correto
+const pool = require("../config/db"); 
 
-// 1. LISTAR CATÁLOGO DE DESAFIOS (Templates prontos)
-// Rota: GET /api/desafios/catalogo
+// LISTAR CATÁLOGO DE DESAFIOS (Templates prontos)
 exports.listarCatalogoDesafios = async (req, res) => {
     try {
         // Busca todos os modelos de desafio para o usuário escolher
@@ -15,8 +14,7 @@ exports.listarCatalogoDesafios = async (req, res) => {
     }
 };
 
-// 2. BUSCAR OPÇÕES DE PERSONALIZAÇÃO (Regras de ajuste)
-// Rota: GET /api/desafios/opcoes/:tipo
+// BUSCAR OPÇÕES DE PERSONALIZAÇÃO (Regras de ajuste)
 exports.buscarOpcoesPersonalizacao = async (req, res) => {
     const { tipo } = req.params; // Ex: 'LEITURA', 'EXERCICIO'
 
@@ -36,7 +34,7 @@ exports.buscarOpcoesPersonalizacao = async (req, res) => {
 };
 
 
-// 3. CRIAR DESAFIO INSTANCIADO (Copia o template e salva a personalização do usuário)
+// CRIAR DESAFIO INSTANCIADO (Copia o template e salva a personalização do usuário)
 // Rota: POST /api/desafios
 exports.criarDesafioInstanciado = async (req, res) => {
     const id_usuario = req.userId; // ID do usuário logado
@@ -99,7 +97,7 @@ exports.criarDesafioInstanciado = async (req, res) => {
     }
 };
 
-// 4. LISTAR DESAFIOS DO USUÁRIO (Instâncias Ativas)
+//  LISTAR DESAFIOS DO USUÁRIO (Instâncias Ativas)
 // Rota: GET /api/desafios
 exports.listarDesafiosDoUsuario = async (req, res) => {
     const id_usuario = req.userId;

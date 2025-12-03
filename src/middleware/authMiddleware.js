@@ -1,4 +1,3 @@
-// middleware/authMiddleware.js
 const jwt = require('jsonwebtoken');
 // Importa a mesma chave secreta usada para assinar o token no authController
 const jwtConfig = require('../config/jwt'); 
@@ -35,8 +34,10 @@ module.exports = (req, res, next) => {
     } catch (err) {
         // Se o token for inválido, expirado, ou a chave secreta estiver errada
         if (err.name === 'TokenExpiredError') {
+
              return res.status(401).json({ message: "Token expirado. Por favor, faça login novamente." });
         }
+        console.log(err)
         return res.status(401).json({ message: "Token inválido." });
     }
 };

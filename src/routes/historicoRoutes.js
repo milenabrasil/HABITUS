@@ -1,4 +1,3 @@
-// routes/historicoRoutes.js
 const express = require('express');
 const router = express.Router();
 const {registrarConclusao,listarHistoricoDiario,listarHistoricoPorDesafio} = require('../controllers/historicoController');

@@ -1,5 +1,3 @@
-// server.js (ou app.js) CORRIGIDO
-
 const express = require("express")
 const cors = require("cors")
 require("dotenv").config()

@@ -1,4 +1,3 @@
-// routes/authRoutes.js
 const express = require('express');
 const router = express.Router();
 const {registerUser,loginUser,loginGoogle} = require('../controllers/authController');
@@ -10,6 +9,6 @@ router.post('/register',registerUser);
 router.post('/login',loginUser);
 
 // Rota para futura implementação do Login com Google (Social Login)
-router.post('/google',loginGoogle); // Você irá implementar esta lógica depois
+router.post('/google',loginGoogle);
 
 module.exports = router;

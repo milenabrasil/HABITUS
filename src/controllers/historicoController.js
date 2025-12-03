@@ -1,4 +1,3 @@
-// controllers/historicoController.js
 const pool = require("../config/db"); 
 const conquistaController = require('./conquistaController'); // Controlador importado corretamente
 
@@ -8,10 +7,8 @@ const getTodayDate = () => {
     return new Date().toISOString().split('T')[0]; 
 };
 
-// ----------------------------------------------------
-// 1. REGISTRAR CONCLUSÃO (Ação Principal de XP)
+// REGISTRAR CONCLUSÃO (Ação Principal de XP)
 // Rota: POST /api/historico/concluir
-// ----------------------------------------------------
 exports.registrarConclusao = async (req, res) => {
     const id_usuario = req.userId;
     const { id_desafio } = req.body;
@@ -100,9 +97,7 @@ exports.registrarConclusao = async (req, res) => {
     }
 };
 
-// ----------------------------------------------------
 // 2. LISTAR HISTÓRICO DIÁRIO (Continua o mesmo)
-// ----------------------------------------------------
 exports.listarHistoricoDiario = async (req, res) => {
     const id_usuario = req.userId;
     const data_alvo = req.query.data || getTodayDate(); 
@@ -127,9 +122,7 @@ exports.listarHistoricoDiario = async (req, res) => {
     }
 };
 
-// ----------------------------------------------------
 // 3. LISTAR HISTÓRICO POR DESAFIO (Continua o mesmo)
-// ----------------------------------------------------
 exports.listarHistoricoPorDesafio = async (req, res) => {
     const id_usuario = req.userId;
     const { id } = req.params; 

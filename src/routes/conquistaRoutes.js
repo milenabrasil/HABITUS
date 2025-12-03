@@ -1,4 +1,3 @@
-// routes/conquistaRoutes.js
 const express = require('express');
 const router = express.Router();
 const {listarCatalogoConquistas,listarConquistasDoUsuario} = require('../controllers/conquistaController');

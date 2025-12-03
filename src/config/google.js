@@ -1,4 +1,3 @@
-// src/config/google.js
 // IMPORTANTE: Obtenha este valor no Console de Desenvolvedores do Google e armazene em variáveis de ambiente.
 module.exports = {
     // Substitua pelo seu Client ID real

@@ -1,4 +1,4 @@
-const pool = require("../config/db"); // Adapte o caminho do seu pool de conexão
+const pool = require("../config/db"); 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { OAuth2Client } = require('google-auth-library');
@@ -14,7 +14,7 @@ const generateToken = (id_usuario) => {
     return jwt.sign({ id_usuario }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 }
 
-// 1. REGISTER: Cadastro de Novo Usuário (Sign Up)
+//REGISTER: Cadastro de Novo Usuário (Sign Up)
 exports.registerUser = async (req, res) => {
     try {
         const { nome, email, senha } = req.body;
@@ -32,7 +32,6 @@ exports.registerUser = async (req, res) => {
         const senha_hash = await bcrypt.hash(senha, salt);
 
         const [result] = await pool.query(
-            // email_verificado fica como FALSE por padrão
             "INSERT INTO usuarios (nome, email, senha_hash) VALUES (?,?,?)",
             [nome, email, senha_hash]
         );
@@ -52,7 +51,7 @@ exports.registerUser = async (req, res) => {
     }
 };
 
-// 2. LOGIN: Login Tradicional (Sign In)
+// LOGIN: Login Tradicional (Sign In)
 exports.loginUser = async (req, res) => {
     try {
         const { email, senha } = req.body;
@@ -90,7 +89,7 @@ exports.loginUser = async (req, res) => {
     }
 };
 
-// 3. LOGIN GOOGLE: Autenticação Social (Sign In)
+// LOGIN GOOGLE: Autenticação Social (Sign In)
 exports.loginGoogle = async (req, res) => {
     const { id_token } = req.body; // O frontend envia o ID Token do Google
 
@@ -100,7 +99,7 @@ exports.loginGoogle = async (req, res) => {
 
     let payload;
     try {
-        // 1. VERIFICAÇÃO E DECODIFICAÇÃO DO TOKEN
+        // VERIFICAÇÃO E DECODIFICAÇÃO DO TOKEN
         const ticket = await client.verifyIdToken({
             idToken: id_token,
             audience: googleConfig.GOOGLE_CLIENT_ID,
@@ -117,7 +116,7 @@ exports.loginGoogle = async (req, res) => {
     try {
         await connection.beginTransaction();
 
-        // 2. BUSCAR USUÁRIO EXISTENTE
+        // BUSCAR USUÁRIO EXISTENTE
         const [existingUser] = await connection.query(
             "SELECT id_usuario, nome, xp_total, foto_url FROM usuarios WHERE google_id = ? OR email = ?",
             [google_id, email]
@@ -141,7 +140,7 @@ exports.loginGoogle = async (req, res) => {
             );
 
         } else {
-            // 3. NOVO USUÁRIO: CRIAR CONTA
+            //NOVO USUÁRIO: CRIAR CONTA
             const [result] = await connection.query(
                 `INSERT INTO usuarios (google_id, email, nome, foto_url, email_verificado, xp_total) 
                  VALUES (?, ?, ?, ?, ?, 0)`,
@@ -153,7 +152,7 @@ exports.loginGoogle = async (req, res) => {
             userFotoUrl = foto_url;
         }
 
-        // 4. GERAR E RETORNAR O JWT
+        // GERAR E RETORNAR O JWT
         const token = generateToken(id_usuario);
         
         await connection.commit();

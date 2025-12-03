@@ -1,4 +1,3 @@
-// controllers/objetivoController.js
 const pool = require("../config/db"); // Adapte o caminho
 const { response } = require("express");
 

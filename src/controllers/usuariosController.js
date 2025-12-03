@@ -1,11 +1,9 @@
-const pool = require("../config/db"); // Adapte o caminho
+const pool = require("../config/db");
 const bcrypt = require('bcryptjs'); // Necessário para alterar a senha
 const SALT_ROUNDS = 10; 
 
-// ----------------------------------------------------
 // 1. BUSCAR PERFIL DO USUÁRIO LOGADO
 // Rota: GET /api/usuarios/perfil
-// ----------------------------------------------------
 exports.buscarPerfil = async (req, res) => {
     const id_usuario = req.userId; // ID do token
 
@@ -32,10 +30,7 @@ exports.buscarPerfil = async (req, res) => {
     }
 };
 
-// ----------------------------------------------------
-// 2. ATUALIZAR DADOS BÁSICOS DO PERFIL
-// Rota: PUT /api/usuarios/perfil
-// ----------------------------------------------------
+// ATUALIZAR DADOS BÁSICOS DO PERFIL
 exports.atualizarPerfil = async (req, res) => {
     const id_usuario = req.userId;
     // Permite que o usuário atualize nome e foto_url
@@ -59,10 +54,7 @@ exports.atualizarPerfil = async (req, res) => {
     }
 };
 
-// ----------------------------------------------------
-// 3. ALTERAR SENHA (Requer senha antiga)
-// Rota: PUT /api/usuarios/senha
-// ----------------------------------------------------
+//  ALTERAR SENHA (Requer senha antiga)
 exports.alterarSenha = async (req, res) => {
     const id_usuario = req.userId;
     const { senha_antiga, senha_nova } = req.body;

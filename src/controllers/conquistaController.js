@@ -1,4 +1,3 @@
-// controllers/conquistaController.js
 const pool = require("../config/db"); 
 
 // Função auxiliar para converter strings de data MySQL (YYYY-MM-DD) para objetos Date
@@ -9,10 +8,8 @@ const parseDate = (dateString) => {
 };
 
 
-// ----------------------------------------------------
-// 1. LISTAR CATÁLOGO DE CONQUISTAS (Templates)
+// LISTAR CATÁLOGO DE CONQUISTAS (Templates)
 // Rota: GET /api/conquistas/catalogo
-// ----------------------------------------------------
 exports.listarCatalogoConquistas = async (req, res) => {
     try {
         // Retorna todos os modelos de conquistas disponíveis no sistema
@@ -26,10 +23,8 @@ exports.listarCatalogoConquistas = async (req, res) => {
     }
 };
 
-// ----------------------------------------------------
-// 2. LISTAR CONQUISTAS DO USUÁRIO (O que ele já ganhou)
+// LISTAR CONQUISTAS DO USUÁRIO (O que ele já ganhou)
 // Rota: GET /api/conquistas/usuario
-// ----------------------------------------------------
 exports.listarConquistasDoUsuario = async (req, res) => {
     const id_usuario = req.userId;
 
@@ -53,10 +48,8 @@ exports.listarConquistasDoUsuario = async (req, res) => {
     }
 };
 
-// ----------------------------------------------------
 // 3. FUNÇÃO AUXILIAR: VERIFICA E CONCEDE CONQUISTAS
 // Chamada DENTRO da transação do historicoController.js
-// ----------------------------------------------------
 exports.verificarEConcederConquistas = async (connection, id_usuario) => {
     let novasConquistas = [];
 
